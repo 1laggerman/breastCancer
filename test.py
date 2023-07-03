@@ -8,13 +8,17 @@ n_cols = X.shape[1]
 k = int(X.size * 0.01)  # Number of values to replace (1% of array size)
 
 # Get the indices of the smallest k values in each column
-smallest_indices = np.argsort(X, axis=0)[:k, np.arange(n_cols)]
+smallest_indices = np.argsort(X, axis=0)[1]
+# smallest_indeices = np.argsort(X, axis=0)[:2]
+
+print(smallest_indices)
 
 # Calculate the threshold value as the smallest value among the selected indices
-threshold = X[smallest_indices[-1, np.arange(n_cols)]]
+threshold = X[smallest_indices, np.arange(n_cols)]
+print(threshold)
 
 # Replace the smallest values in each column with the threshold
-X[smallest_indices] = threshold
+# X[smallest_indices] = threshold
 
 
 # cols = X.shape[1]
