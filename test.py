@@ -1,11 +1,28 @@
 import numpy as np
 
-X = np.array([[0, 5, 2, 1], [0, 1, 5, 8], [2, 3, 4, 2], [1 , 2, 3, 4]], dtype=float)
+X = np.array([[0, 5, 2, 1], [0, 1, 5, 8], [2, 3, 4, 2]], dtype=float)
 print(X)
-threshold = np.percentile(X, 1, axis=0)
-threshold = np.median(X, 1, axis=0)
 
-below_threshold_indices = np.where(X <= threshold)
 
-X[below_threshold_indices] = threshold[below_threshold_indices[1]]
-print(X)
+n_cols = X.shape[1]
+k = int(X.size * 0.01)  # Number of values to replace (1% of array size)
+
+# Get the indices of the smallest k values in each column
+smallest_indices = np.argsort(X, axis=0)[:k, np.arange(n_cols)]
+
+# Calculate the threshold value as the smallest value among the selected indices
+threshold = X[smallest_indices[-1, np.arange(n_cols)]]
+
+# Replace the smallest values in each column with the threshold
+X[smallest_indices] = threshold
+
+
+# cols = X.shape[1]
+# smallest_indices = np.argsort(X, axis=0)[:X.shape[0] * 0.01, np.arange(cols)]
+# thresholds = X[smallest_indices[-1, np.arange(cols)]]
+
+# # below_threshold_indices = np.where(X <= thresholds)
+
+# # X[below_threshold_indices] = thresholds[below_threshold_indices[1]]
+# print(thresholds)
+# print(smallest_indices)
