@@ -19,9 +19,13 @@ print(smallest_indices)
 # Calculate the threshold value as the smallest value among the selected indices
 # threshold = X[smallest_indices, 1]
 threshold = X.values[smallest_indices, np.arange(n_cols)]
-print(threshold)
+print("threshhold: ", threshold)
 
-print(X < threshold)
+# print(np.where(X <= threshold))
+
+below_threshold_indices = np.where(X <= threshold)
+print(below_threshold_indices)
+
 
 # Replace the smallest values in each column with the threshold
 # X[smallest_indices] = threshold
