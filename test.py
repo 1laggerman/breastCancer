@@ -1,16 +1,23 @@
 import numpy as np
 import pandas as pd
+from sklearn.linear_model import LogisticRegression
+import math
 
-X = pd.DataFrame(np.array([[0, 5, 2, 1], [0, 0, 5, 8], [2, 3, 4, 2]], dtype=float))
-print("data: \n", X)
-print()
+# print(math.exp(np.zeros((5))))
+print(np.exp(np.array([0, 1, 2, 3, 4, 5])))
 
-means = (np.mean(X, axis=0) * X.shape[0]) / (X.shape[0] - np.count_nonzero(X == 0, axis=0))
-zero_indices = np.where(X == 0)
-print(zero_indices)
-X.values[zero_indices] = means[zero_indices[1]]
+# n_estimators = 2
+# model = np.array([[1, 2, 1, 1, 0, 2], [2, 1, 0, 1, 0, 2]])
+vote = np.zeros((6, 3))
 
-print(X)
+for i in range(n_estimators):
+    vote[range(6), model[i]] += 0.5 + i
+# print(model[0])
+
+# # for i in range(n_estimators):
+# #     vote[model[i]] += i + 0.5
+
+# print(vote.max(axis=1) / vote.sum(axis=1))
 
 # n_cols = X.shape[1]
 # k = int(X.size * 0.01)  # Number of values to replace (1% of array size)
