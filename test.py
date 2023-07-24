@@ -7,13 +7,14 @@ import math
 print(np.exp(np.array([0, 1, 2, 3, 4, 5])))
 
 # n_estimators = 2
-# model = np.array([[1, 2, 1, 1, 0, 2], [2, 1, 0, 1, 0, 2]])
-vote = np.zeros((6, 3))
+model = np.array([False, True])
+# vote = np.zeros((6, 3))
 
-for i in range(n_estimators):
-    vote[range(6), model[i]] += 0.5 + i
+# for i in range(n_estimators):
+#     vote[range(6), model[i]] += 0.5 + i
 # print(model[0])
 
+print(model.astype(int))
 # # for i in range(n_estimators):
 # #     vote[model[i]] += i + 0.5
 

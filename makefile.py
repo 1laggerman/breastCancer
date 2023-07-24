@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def numStage(stringStage):
     if ("Stage 0" == stringStage):
         return 0
@@ -33,13 +34,16 @@ def numStage(stringStage):
     
     
 
-readfile = pd.read_csv("lnXi.csv")
+# readfile = pd.read_excel("Breast_Cancer_Primary_Tumor.xlsx", sheet_name='gene levels')
+# readfile.to_csv('raw_new_data.csv')
 
-readfile = readfile.iloc[:17003, 5:-3]
+readfile= pd.read_csv("raw_new_data.csv")
+readfile = readfile.iloc[:17004, 5:]
 
 X = readfile.iloc[3:, :]
-Y = readfile.iloc[0, :]
-
+Y = readfile.iloc[1, :]
+# print(X)
+# print(Y)
 for i in range(Y.size):
     num = numStage(Y.iloc[i])
     if (num == -1):
@@ -48,13 +52,11 @@ for i in range(Y.size):
         exit(1)
     Y.iloc[i] = num
 
-# print(X)
-# print(Y)
 
 X.loc[len(X) + 3] = Y
 
 print(X)
 
-# X.to_csv("Raw_ln.csv")
+X.to_csv("Raw_data_upd.csv")
 
-# .to_csv("lnXi.csv")
+# # # .to_csv("lnXi.csv")
